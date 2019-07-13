@@ -1,0 +1,3 @@
+LANGUAGE_CODE = 'ko-kr'
+USE_I18N = True
+USE_L10N = True

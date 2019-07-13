@@ -1,0 +1,13 @@
+*.pyc
+__pycache__/
+venv/
+
+.env*
+
+postgres/
+
+assets/
+
+dev.log
+
+.vscode/
