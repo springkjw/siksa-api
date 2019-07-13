@@ -6,7 +6,7 @@ services:
     build:
       context: ./project
       args:
-        PROJECT_ENV: development
+        PROJECT_ENV: production
     tty: true
     ports:
       - 8000:8000
