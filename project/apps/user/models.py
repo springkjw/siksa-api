@@ -195,7 +195,7 @@ class SocialUser(models.Model):
     provider = models.CharField(
         '공급자',
         max_length=15,
-        choices=SocialProvider
+        choices=SocialProvider.choices()
     )
     
 

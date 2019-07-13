@@ -8,6 +8,8 @@ postgres/
 
 assets/
 
-dev.log
-
 .vscode/
+
+db.sqlite3
+
+log/

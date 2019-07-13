@@ -12,20 +12,30 @@ services:
       - 8000:8000
     volumes:
       - ./project:/project
-    command: uwsgi --http :8000 --wsgi-file /project/config/wsgi.py -M --logto /project/dev.log --py-autoreload 3
+    command: uwsgi --http :8000 --wsgi-file /project/config/wsgi.py -M --logto /project/log/dev.log --py-autoreload 3
     env_file:
       - ./project/.env
       - ./project/.env.development
     depends_on:
       - postgres
+    links:
+      - postgres
+    networks:
+      - backend
   postgres:
     container_name: postgres
     image: postgres
     ports:
       - 5432:5432
     volumes:
-      - ./postgres:/var/lib/postgresql
+      - ./postgres/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: siksa
       POSTGRES_USER: siksa_dev
       POSTGRES_PASSWORD: siksa123!@
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: 'bridge'

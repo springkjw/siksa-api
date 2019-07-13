@@ -34,4 +34,3 @@ class TicketOption(GenericDatetimeModel):
         verbose_name='티켓',
         on_delete=models.CASCADE
     )
-    # name = 

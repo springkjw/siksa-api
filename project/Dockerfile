@@ -4,7 +4,7 @@ ARG PROJECT_ENV
 
 WORKDIR /project
 
-RUN pip install uwsgi
+RUN pip install uwsgi supervisor
 
 COPY ./requirements/base.txt /project/tmp/base.txt
 COPY ./requirements/${PROJECT_ENV}.txt /project/tmp/${PROJECT_ENV}.txt
