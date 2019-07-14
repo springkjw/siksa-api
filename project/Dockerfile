@@ -1,14 +1,12 @@
 FROM python:3.7
 
-ARG BUILD_ENVIRONMENT
+ARG PROJECT_ENV
 
 WORKDIR /project
 
-RUN pip install uwsgi supervisor
+RUN pip install uwsgi
 
-COPY ./requirements /product/tmp/requirements
-
-RUN if [ "$BUILD_ENVIRONMENT" = "productionn" ]; \
-  then pip install -r /product/tmp/requirements/production.txt;\
-  else pip install -r /product/tmp/requirements/development.txt;\
-  fi
+COPY ./requirements/base.txt /project/tmp/base.txt
+COPY ./requirements/${PROJECT_ENV}.txt /project/tmp/${PROJECT_ENV}.txt
+RUN pip install -r /project/tmp/${PROJECT_ENV}.txt
+RUN rm -rf /project/tmp
