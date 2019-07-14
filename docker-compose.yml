@@ -4,9 +4,6 @@ services:
   app:
       container_name: app
       tty: true
-      build:
-        context: ./project
-        args:
-          PROJECT_ENV: production
+      build: ./project
       volumes:
         - ./project:/project

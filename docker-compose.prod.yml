@@ -18,6 +18,8 @@ services:
       - ./project/.env.production
     networks:
       - backend
+    environment:
+      - PROJECT_ENV=production
   nginx:
     container_name: nginx
     image: nginx
