@@ -1,11 +1,11 @@
 build: ## 도커 이미지 빌드
-	docker-compose build
+	docker-compose build --no-cache
 
 dev: build
-	docker-compose -f docker-compose.dev.yml up -d
+	docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 
 deploy: build
-	docker-compose -f docker-compose.prod.yml up -d
+	docker-compose up -d
 
 stop:
 	docker-compose down --volumes --remove-orphans

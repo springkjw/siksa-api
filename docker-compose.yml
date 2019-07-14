@@ -2,8 +2,36 @@ version: '3'
 
 services:
   app:
-      container_name: app
-      tty: true
-      build: ./project
-      volumes:
-        - ./project:/project
+    container_name: app
+    tty: true
+    build:
+      context: ./project
+      args:
+        BUILD_ENVIRONMENT: production
+    volumes:
+      - ./project:/project
+    ports:
+      - 8001:8001
+    command: supervisord -c supervisor.conf
+    env_file:
+      - ./project/.env
+      - ./project/.env.production
+    networks:
+      - backend
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    links:
+      - app
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: 'bridge'

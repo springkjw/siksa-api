@@ -7,7 +7,7 @@ services:
     build:
       context: ./project
       args:
-        PROJECT_ENV: production
+        BUILD_ENVIRONMENT: production
     volumes:
       - ./project:/project
     ports:
@@ -18,8 +18,6 @@ services:
       - ./project/.env.production
     networks:
       - backend
-    environment:
-      - PROJECT_ENV=production
   nginx:
     container_name: nginx
     image: nginx
