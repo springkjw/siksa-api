@@ -2,16 +2,11 @@ version: '3'
 
 services:
   app:
-    container_name: app
-    build:
-      context: ./project
-      args:
-        PROJECT_ENV: production
-    tty: true
-    ports:
-      - 8000:8000
-    volumes:
-      - ./project:/project
-    command: uwsgi --http :8000 --wsgi-file /project/config/wsgi.py -M
-    env_file:
-      - ./project/.env
+      container_name: app
+      tty: true
+      build:
+        context: ./project
+        args:
+          PROJECT_ENV: development
+      volumes:
+        - ./project:/project

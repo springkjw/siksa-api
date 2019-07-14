@@ -3,15 +3,11 @@ version: '3'
 services:
   app:
     container_name: app
-    build:
-      context: ./project
-      args:
-        PROJECT_ENV: development
     tty: true
-    ports:
-      - 8000:8000
     volumes:
       - ./project:/project
+    ports:
+      - 8000:8000
     command: uwsgi --http :8000 --wsgi-file /project/config/wsgi.py -M --logto /project/log/dev.log --py-autoreload 3
     env_file:
       - ./project/.env
