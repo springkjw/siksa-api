@@ -7,7 +7,7 @@ services:
     build:
       context: ./project
       args:
-        BUILD_ENVIRONMENT: production
+        PROJECT_ENV: production
     volumes:
       - ./project:/project
     ports:
