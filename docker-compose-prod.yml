@@ -6,8 +6,6 @@ services:
     tty: true
     build:
       context: ./project
-      args:
-        PROJECT_ENV: production
     volumes:
       - ./project:/project
     ports:

@@ -1,12 +1,9 @@
 FROM python:3.7
 
-ARG PROJECT_ENV
-
 WORKDIR /project
 
-RUN pip install uwsgi
+RUN pip install uwsgi supervisor
 
-COPY ./requirements/base.txt /project/tmp/base.txt
-COPY ./requirements/${PROJECT_ENV}.txt /project/tmp/${PROJECT_ENV}.txt
-RUN pip install -r /project/tmp/${PROJECT_ENV}.txt
+COPY ./requirements.txt /project/tmp/requirements.txt
+RUN pip install -r /project/tmp/requirements.txt
 RUN rm -rf /project/tmp
