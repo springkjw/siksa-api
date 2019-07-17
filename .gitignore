@@ -13,3 +13,5 @@ assets/
 db.sqlite3
 
 log/
+
+supervisord.log
