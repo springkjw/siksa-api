@@ -50,12 +50,16 @@ class User(AbstractBaseUser):
     )
     password = models.CharField(
         '비밀번호',
-        max_length=128
+        max_length=128,
+        null=True,
+        blank=True
     )
 
     name = models.CharField(
         '이름',
-        max_length=202
+        max_length=202,
+        null=True,
+        blank=True
     )
     profile_image = models.ImageField(
         '프로필 이미지',
@@ -120,7 +124,6 @@ class User(AbstractBaseUser):
     )
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
 
     objects = UserManager()
 
@@ -196,6 +199,10 @@ class SocialUser(models.Model):
         '공급자',
         max_length=15,
         choices=SocialProvider.choices()
+    )
+    uid = models.CharField(
+        '플랫폼 고유 아이디',
+        max_length=100
     )
     
 
